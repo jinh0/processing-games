@@ -18,6 +18,13 @@ class Cannon extends Rectangle {
   void update() {
     this.x = mouseX;
     
+    for (Meteor meteor : meteors) {
+      if (this.hit(meteor)) {
+        // game over!
+      }
+    }
+    
+    
     if (millis() - prevTime >= 300) {
       Bullet b = new Bullet(this.x, this.y);
       bullets.add(b);

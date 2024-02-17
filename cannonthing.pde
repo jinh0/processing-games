@@ -4,16 +4,15 @@ Cannon cannon = new Cannon(300, 500, 50, 100);
 Meteor m1 = new Meteor(100, 100);
 Meteor m2 = new Meteor(300, 0);
 
+boolean isGameOver = false;
+
 void setup() {
   frameRate(60);
   size(500, 600);
   textSize(30);
-
-  meteors.add(m1);
-  meteors.add(m2);
 }
 
-void draw() {
+void playGame() {
   background(#74E2FF);
   
   cannon.display();
@@ -28,4 +27,16 @@ void draw() {
   }
   
   meteors.removeIf(meteor -> meteor.toRemove);
+}
+
+void gameOver() {
+  text("GAME OVER! SUCKERRRRRRRRRRRRRRRRRRRR", 50, 300);
+}
+
+void draw() {
+  if (!isGameOver) {
+    playGame();
+  } else {
+    gameOver();
+  }
 }

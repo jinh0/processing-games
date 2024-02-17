@@ -4,9 +4,12 @@ class Meteor extends Ball {
   
   boolean toRemove = false;
 
+  // constructor: the function to make a new Meteor
   Meteor(float x, float y) {
     super(x, y, true);
     this.speedX = 2;
+    
+    meteors.add(this);
   }
 
   void display() {
@@ -25,7 +28,7 @@ class Meteor extends Ball {
     super.update();
     
     if (this.hp <= 0) {
-      toRemove = true;
+      this.toRemove = true;
     }
   }
 }
