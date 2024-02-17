@@ -6,7 +6,7 @@ class Shape {
   float x;
   float y;
 
-  float gravity = 1;
+  float gravity = 0.5;
   float speedY;
   float speedX;
 
@@ -34,7 +34,7 @@ class Shape {
 
     if (this.y > height) {
       this.y = height;
-      this.speedY = -this.speedY * 0.8;
+      this.speedY = -this.speedY;
     }
 
     if (this.x < 0) {

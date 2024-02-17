@@ -10,8 +10,6 @@ class Cannon extends Rectangle {
   void display() {
     super.display();
     
-    text("Bullets: " + bullets.size(), 50, 50);
-    
     for (Bullet bullet : bullets) {
       bullet.display();
     }
@@ -20,7 +18,7 @@ class Cannon extends Rectangle {
   void update() {
     this.x = mouseX;
     
-    if (millis() - prevTime >= 500) {
+    if (millis() - prevTime >= 300) {
       Bullet b = new Bullet(this.x, this.y);
       bullets.add(b);
       
@@ -31,6 +29,6 @@ class Cannon extends Rectangle {
       bullet.update();
     }
     
-    bullets.removeIf(bullet -> bullet.y < 0);
+    bullets.removeIf(bullet -> bullet.y < 0 || bullet.toRemove);
   }
 }

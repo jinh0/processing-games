@@ -1,10 +1,12 @@
 class Meteor extends Ball {
   int hp = 100;
-  int radius = 50;
+  int radius = 25;
+  
+  boolean toRemove = false;
 
-  Meteor(int x, int y) {
-    super(x, y, false);
-    this.speedX = 5;
+  Meteor(float x, float y) {
+    super(x, y, true);
+    this.speedX = 2;
   }
 
   void display() {
@@ -13,5 +15,17 @@ class Meteor extends Ball {
     fill(0);
     text(this.hp, this.x, this.y);
     fill(255);
+  }
+  
+  void smashed() {
+    this.hp = this.hp - 20;
+  }
+  
+  void update() {
+    super.update();
+    
+    if (this.hp <= 0) {
+      toRemove = true;
+    }
   }
 }
