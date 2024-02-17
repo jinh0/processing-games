@@ -40,10 +40,18 @@ class Cannon extends Rectangle {
     bullets.removeIf(bullet -> bullet.y < 0 || bullet.toRemove);
   }
   
-  void hit(Meteor meteor) {
+  boolean hit(Meteor meteor) {
     // Calculate the distance between the center of the meteor and the closest point on the rectangle
-    float closestX = max(min(meteor.x, x + w), x);
-    float closestY = max(min(meteor.y, y + h), y);
+    float closestX = this.x;
+    float closestY = this.y;
+    
+    if (abs(meteor.x - (this.x + this.w)) <= abs(meteor.x - this.x)) {
+      closestX = this.x + this.w;
+    }
+    
+    if (abs(meteor.y - (this.y + this.h)) <= abs(meteor.y - this.y)) {
+      closestY = this.y + this.h;
+    }
 
     // Calculate the distance between the meteor's center and the closest point on the rectangle
     float distanceX = meteor.x - closestX;
@@ -53,10 +61,6 @@ class Cannon extends Rectangle {
     float distance = sqrt(distanceX * distanceX + distanceY * distanceY);
 
     // Check if the distance is less than the meteor's radius
-    if (distance < meteor.radius) {
-      // Overlapping, do something (e.g., handle the collision)
-      // For example, print a message
-      println("Cannon hit by Meteor!");
-    }
+    return distance < meteor.radius;
   }
 }
